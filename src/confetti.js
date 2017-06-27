@@ -95,7 +95,6 @@ function confetti(canvasObj) {
       this.number = number
       this.particles = []
       this.text = text
-      this.recycle = true
       this.type = 1
     }
     ParticleGenerator.prototype.animate = function animateParticle() {
@@ -122,7 +121,7 @@ function confetti(canvasObj) {
       for(let i = 0; i < this.particles.length; i++) {
         const p = this.particles[i]
         p.update()
-        if((p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) && this.recycle) {
+        if((p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) && canvas.recycle) {
           // a brand new particle replacing the dead one
           const newParticleX = utils.clamp(
             utils.randomRange(this.x, canvas.width + this.x),

@@ -13,6 +13,7 @@ export default class Confetti extends React.PureComponent {
     gravity: PropTypes.number,
     colors: PropTypes.arrayOf(PropTypes.string),
     opacity: PropTypes.number,
+    recycle: PropTypes.bool
   }
 
   static defaultProps = {
@@ -26,7 +27,8 @@ export default class Confetti extends React.PureComponent {
       '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800',
       '#FF5722', '#795548',
     ],
-    opacity: 1.0
+    opacity: 1.0,
+    recycle: true
   }
 
   componentDidMount() {
