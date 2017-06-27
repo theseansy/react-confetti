@@ -16,6 +16,7 @@ function confetti(canvasObj) {
     '#FF5722', '#795548',
   ]
   let opacity = 1.0
+  let recycle = true
 
   function self() {
     const canvas = canvasObj
@@ -95,7 +96,6 @@ function confetti(canvasObj) {
       this.number = number
       this.particles = []
       this.text = text
-      this.recycle = true
       this.type = 1
     }
     ParticleGenerator.prototype.animate = function animateParticle() {
@@ -122,7 +122,7 @@ function confetti(canvasObj) {
       for(let i = 0; i < this.particles.length; i++) {
         const p = this.particles[i]
         p.update()
-        if((p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) && this.recycle) {
+        if((p.y > canvas.height || p.y < -100 || p.x > canvas.width + 100 || p.x < -100) && recycle) {
           // a brand new particle replacing the dead one
           const newParticleX = utils.clamp(
             utils.randomRange(this.x, canvas.width + this.x),
@@ -175,6 +175,11 @@ function confetti(canvasObj) {
   self.friction = (...args) => {
     if(!args.length) { return friction }
     friction = args[0]
+    return self
+  }
+  self.recycle = (...args) => {
+    if(!args.length) { return recycle }
+    recycle = args[0]
     return self
   }
 
